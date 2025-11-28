@@ -1,0 +1,20 @@
+@use 'variables' as *;
+@use "sass:map";
+@use "sass:color";
+
+$theme-map: ();
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      @each $key, $value in $map {
+        $theme-map: map.merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+    }
+  }
+}
+
+@function t($key) {
+  @return map.get($theme-map, $key);
+}

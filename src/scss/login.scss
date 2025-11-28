@@ -1,0 +1,20 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'main' as *;
+@use "sass:color";
+
+.container
+{
+    height: 99vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form
+{
+    display: flex;
+    flex-direction: column;
+    width: clamp(200px, vw(300px), 300px);
+}

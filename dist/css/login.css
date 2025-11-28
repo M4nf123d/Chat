@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "Open-Sans";
+  src: url("/banana-s-web/assets/fonts/Open_Sans/static/OpenSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open-Sans";
+  src: url("/banana-s-web/assets/fonts/Open_Sans/static/OpenSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open-Sans";
+  src: url("/banana-s-web/assets/fonts/Open_Sans/static/OpenSans-ExtraBold.ttf") format("truetype");
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+  margin: 5px;
+  font-family: "Open-Sans";
+  font-weight: bold;
+  scroll-behavior: smooth;
+}
+.theme--light body {
+  background: #ffea8f;
+  color: #332900;
+}
+.theme--dark body {
+  background: #705c00;
+  color: #fff5cc;
+}
+
+.container {
+  height: 99vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: clamp(200px, 15.625vw, 300px);
+}
+
+/*# sourceMappingURL=login.css.map */
