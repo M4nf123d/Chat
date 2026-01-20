@@ -8,16 +8,38 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $userId = $_SESSION['user_id'];
+
 $stmt = mysqli_prepare($conn, "SELECT username, email FROM users WHERE user_id = ?");
 mysqli_stmt_bind_param($stmt, "i", $userId);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($result);
+mysqli_stmt_close($stmt);
 
 $error = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if (isset($_POST['delete_account'])) {
+        $stmt = mysqli_prepare($conn, "DELETE FROM users WHERE user_id = ?");
+        if (!$stmt) {
+            die(mysqli_error($conn));
+        }
+
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+
+        if (mysqli_stmt_execute($stmt)) {
+            session_destroy();
+            header('Location: register.php');
+            exit;
+        } else {
+            $error = 'Nie udało się usunąć konta.';
+        }
+
+        mysqli_stmt_close($stmt);
+    }
+
     $newUsername = trim($_POST['username'] ?? '');
     $newPassword = trim($_POST['password'] ?? '');
     $confirmPassword = trim($_POST['confirm_password'] ?? '');
@@ -48,6 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $error = 'Wystąpił błąd przy aktualizacji danych.';
         }
+
+        mysqli_stmt_close($stmt);
     }
 }
 ?>
@@ -72,12 +96,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="success"><?= htmlspecialchars($success) ?></div>
         <?php endif; ?>
 
-        <form action="" method="POST">
-            <input type="text" name="username" placeholder="Nazwa użytkownika" value="<?= htmlspecialchars($user['username']) ?>" required>
+        <form method="POST">
+            <input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" required>
             <input type="text" value="<?= htmlspecialchars($user['email']) ?>" readonly>
             <input type="password" name="password" placeholder="Nowe hasło (min. 8 znaków)">
             <input type="password" name="confirm_password" placeholder="Potwierdź hasło">
             <button type="submit">Zapisz zmiany</button>
+        </form>
+
+        <form method="POST" onsubmit="return confirm('Czy na pewno chcesz usunąć konto?');">
+            <button type="submit" name="delete_account" class="danger">Usuń konto</button>
         </form>
     </div>
 </div>
