@@ -1,0 +1,171 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f2f4f7;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-wrapper {
+    width: 90%;
+    max-width: 1100px;
+    height: 80vh;
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(0,0,0,0.15);
+}
+
+.sidebar {
+    width: 260px;
+    background: #f8f9fb;
+    border-right: 1px solid #d6dbe0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar button {
+    margin: 10px;
+    padding: 8px 16px;
+    background: #1e6fd9;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.sidebar button:hover {
+    background: #155ab3;
+}
+
+.users {
+    flex: 1;
+    overflow: hidden;
+}
+
+.users a {
+    display: block;
+    padding: 14px 16px;
+    color: #2c3e50;
+    text-decoration: none;
+    border-bottom: 1px solid #e1e5ea;
+    transition: background 0.2s, color 0.2s;
+}
+
+.users a:hover {
+    background: #e8f1ff;
+    color: #1e6fd9;
+}
+
+.users a.active {
+    background: #dbe9ff;
+    color: #1e6fd9;
+    font-weight: bold;
+}
+
+.chat-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+}
+
+.messages::-webkit-scrollbar {
+    display: none; 
+}
+
+.message {
+    max-width: 65%;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+.message.me {
+    background: #1e6fd9;
+    color: #fff;
+    margin-left: auto;
+    border-bottom-right-radius: 2px;
+}
+
+.message.other {
+    background: #f1f3f5;
+    color: #2c3e50;
+    margin-right: auto;
+    border-bottom-left-radius: 2px;
+}
+
+.send-box {
+    padding: 12px;
+    border-top: 1px solid #d6dbe0;
+    background: #f8f9fb;
+}
+
+.send-box form {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.send-box input[type="text"] {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #cbd3da;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    color: #2c3e50;
+    background: #fff;
+}
+
+.send-box input[type="text"]:focus {
+    border-color: #1e6fd9;
+}
+
+.send-box button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #1e6fd9;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.send-box button:hover {
+    background: #155ab3;
+}
+
+.delete-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.delete-btn {
+    all: unset;
+    margin-right: 6px;
+}
+
+.delete-btn:hover {
+    
+    color: red;
+}
